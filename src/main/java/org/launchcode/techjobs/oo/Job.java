@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Job {
 
-    private int id;
+    public int id;
     private static int nextId = 1;
 
     private String name;
@@ -18,16 +18,6 @@ public class Job {
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
 
-//like this? or the way I did it?
-//    public Job(int id, String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
-//        this.id = id;
-//        this.name = name;
-//        this.employer = employer;
-//        this.location = location;
-//        this.positionType = positionType;
-//        this.coreCompetency = coreCompetency;
-//    }
-//below is my own way.
     public Job() {
         id = nextId;
         nextId++;
@@ -48,13 +38,14 @@ public class Job {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Job job = (Job) o;
-        return Objects.equals(name, job.name) && Objects.equals(employer, job.employer) && Objects.equals(location, job.location) && Objects.equals(positionType, job.positionType) && Objects.equals(coreCompetency, job.coreCompetency);
+        return getId() == job.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, employer, location, positionType, coreCompetency);
+        return Objects.hashCode(getId());
     }
+
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
