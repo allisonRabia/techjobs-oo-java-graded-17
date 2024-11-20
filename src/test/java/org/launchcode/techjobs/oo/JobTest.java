@@ -2,10 +2,61 @@ package org.launchcode.techjobs.oo;
 
 import org.junit.Test;
 
+import static java.lang.System.lineSeparator;
 import static org.testng.Assert.*;
 
 public class JobTest {
     //TODO: Create your unit tests here
+
+//Task 5 #1 toString return blank line before and after job info
+    @Test
+
+        public void testToStringStartsAndEndsWithNewLine() {
+        Job job6 = new Job("Product Tester", new Employer("ACME"), new
+                Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
+        int n = job6.toString().length();
+        char first = job6.toString().charAt(0);
+        char last = job6.toString().charAt(n-1);
+
+       String firstChar = String.valueOf(first); //String firstChar = Character.toString(first);
+       String lastChar = String.valueOf(last); //or String lastChar = Character.toString(last);
+
+        assertEquals(firstChar, lineSeparator());
+        assertEquals(lastChar, lineSeparator());
+
+    }
+
+    //Task 5 #2 to String contains a label for each field
+    @Test
+            public void testToStringContainsCorrectLabelsAndData() {
+        Job job7 = new Job("Product Tester", new Employer("ACME"), new
+                Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
+        assertEquals("Product Tester", job7.getName());
+        assertEquals("ACME", job7.getEmployer().getValue());
+        assertEquals("Desert", job7.getLocation().getValue());
+        assertEquals("Quality Control", job7.getPositionType().getValue());
+        assertEquals("Persistence", job7.getCoreCompetency().getValue());
+    }
+
+    //Task 5 #3 toString handles empty field
+    @Test
+            public void testToStringHandlesEmptyField() {
+        Job job8 = new Job("", new Employer("ACME"), new
+                Location(""), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
+        //assertEquals("Product Tester", job8.getName());
+        //assertEquals("ACME", job8.getEmployer().getValue());
+        assertEquals(job8.toString(), "\nID: 3\n" +
+                "Name: Data not available\n" +
+                "Employer: ACME\n" +
+                "Location: Data not available\n" +
+                "Position Type: Quality Control\n" +
+                "Core Competency: Persistence\n");
+        //assertEquals("Quality Control", job8.getPositionType().getValue());
+        //assertEquals("Persistence", job8.getCoreCompetency().getValue());
+    }
+
+
+
 //TODO: test empty constructor
 
     Job job1;
@@ -34,8 +85,6 @@ public class JobTest {
     public void testJobConstructorSetsAllFields() {
         Job job3 = new Job("Product Tester", new Employer("ACME"), new
                 Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
-//        String msg1 = "Test that the constructor correctly assigns the class of each field";
-//        String msg2 = "Test that the constructor correctly assigns the class of each field";
         assertNotNull(job3.getName());
         assertNotNull(job3.getEmployer());
         assertNotNull(job3.getLocation());
