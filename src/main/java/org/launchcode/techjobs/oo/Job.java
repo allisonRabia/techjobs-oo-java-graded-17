@@ -15,10 +15,6 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
-    // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
-    //  other five fields. The second constructor should also call the first in order to initialize
-    //  the 'id' field.
-
     public Job() {
         id = nextId;
         nextId++;
@@ -31,8 +27,6 @@ public class Job {
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
 
     @Override
     public boolean equals(Object o) {
@@ -46,11 +40,6 @@ public class Job {
     public int hashCode() {
         return Objects.hashCode(getId());
     }
-
-
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
-
 
     public String getName() {
         return name;
@@ -101,11 +90,10 @@ public class Job {
         String newLine = System.lineSeparator();
 
         return newLine + "ID: " + id + newLine +
-                "Name: " + (StringUtils.isEmpty(name) ? "Data not available" : name) + newLine +
-                "Employer: " + (StringUtils.isEmpty(employer.getValue()) ? "Data not available" : employer) + newLine +
-                "Location: " + (StringUtils.isEmpty(location.getValue()) ? "Data not available" : location) + newLine +
-                "Position Type: " + (StringUtils.isEmpty(positionType.getValue()) ? "Data not available" : positionType) + newLine +
-                "Core Competency: " + (StringUtils.isEmpty(coreCompetency.getValue()) ? "Data not available" : coreCompetency) + newLine;
-        }
-
+                "Name: " + (StringUtils.isBlank(name) ? "Data not available" : name) + newLine +
+                "Employer: " + (StringUtils.isBlank(employer.getValue()) ? "Data not available" : employer) + newLine +
+                "Location: " + (StringUtils.isBlank(location.getValue()) ? "Data not available" : location) + newLine +
+                "Position Type: " + (StringUtils.isBlank(positionType.getValue()) ? "Data not available" : positionType) + newLine +
+                "Core Competency: " + (StringUtils.isBlank(coreCompetency.getValue()) ? "Data not available" : coreCompetency) + newLine;
+    }
 }

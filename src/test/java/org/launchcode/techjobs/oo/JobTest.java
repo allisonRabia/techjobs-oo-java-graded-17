@@ -3,23 +3,21 @@ package org.launchcode.techjobs.oo;
 import org.junit.Test;
 
 import static java.lang.System.lineSeparator;
-import static org.testng.Assert.*;
+import static org.junit.Assert.*;
 
 public class JobTest {
-    //TODO: Create your unit tests here
 
 //Task 5 #1 toString return blank line before and after job info
     @Test
-
-        public void testToStringStartsAndEndsWithNewLine() {
+    public void testToStringStartsAndEndsWithNewLine() {
         Job job6 = new Job("Product Tester", new Employer("ACME"), new
                 Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
         int n = job6.toString().length();
         char first = job6.toString().charAt(0);
         char last = job6.toString().charAt(n-1);
 
-       String firstChar = String.valueOf(first); //String firstChar = Character.toString(first);
-       String lastChar = String.valueOf(last); //or String lastChar = Character.toString(last);
+        String firstChar = String.valueOf(first);
+        String lastChar = String.valueOf(last);
 
         assertEquals(firstChar, lineSeparator());
         assertEquals(lastChar, lineSeparator());
@@ -43,43 +41,26 @@ public class JobTest {
             public void testToStringHandlesEmptyField() {
         Job job8 = new Job("", new Employer("ACME"), new
                 Location(""), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
-        //assertEquals("Product Tester", job8.getName());
-        //assertEquals("ACME", job8.getEmployer().getValue());
-        assertEquals(job8.toString(), "\nID: 3\n" +
-                "Name: Data not available\n" +
-                "Employer: ACME\n" +
-                "Location: Data not available\n" +
-                "Position Type: Quality Control\n" +
-                "Core Competency: Persistence\n");
-        //assertEquals("Quality Control", job8.getPositionType().getValue());
-        //assertEquals("Persistence", job8.getCoreCompetency().getValue());
+
+        assertEquals(job8.toString(), lineSeparator() + "ID: 3" + lineSeparator() +
+                "Name: Data not available" + lineSeparator() +
+                "Employer: ACME" + lineSeparator() +
+                "Location: Data not available" + lineSeparator() +
+                "Position Type: Quality Control" + lineSeparator() +
+                "Core Competency: Persistence" + lineSeparator());
+
     }
 
-
-
-//TODO: test empty constructor
-
-    Job job1;
-    Job job2;
-
-    public void createTestData() {
-        job1 = new Job();
-        job2 = new Job();
-    }
 
     @Test
-
     public void testSettingJobId() {
-        createTestData();
-        String msg = "constructor correctly sets Job ID";
+        Job job1 = new Job();
+        Job job2 = new Job();
         int expected = job1.getId();
         int actual = job2.getId();
-        assertNotEquals(expected, actual, msg);
+        assertNotEquals(expected, actual);
     }
 
-
-    //TODO: Test Full constructor
-//public void createTestJob() {
 
     @Test
     public void testJobConstructorSetsAllFields() {
@@ -97,13 +78,6 @@ public class JobTest {
         assertEquals("Persistence", job3.getCoreCompetency().getValue());
 
     }
-
-//    @Test
-//    public void testInitialGasTank() {
-//        Car test_car = new Car("Toyota", "Prius", 10, 50);
-//        assertEquals(10, test_car.getGasTankLevel(), .001);
-//    }
-    //TODO: Test the equals Method
 
 
     @Test
